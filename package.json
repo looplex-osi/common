@@ -8,6 +8,7 @@
   "scripts": {
     "watch": "parcel watch",
     "build": "parcel build --reporter @parcel/reporter-bundle-analyzer",
+    "pretest": "standard | snazzy",
     "test": "node --test",
     "test:coverage": "node --test --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=lcov.info"
   },
@@ -18,6 +19,8 @@
     "@parcel/compressor-brotli": "^2.12.0",
     "@parcel/compressor-gzip": "^2.12.0",
     "@parcel/reporter-bundle-analyzer": "^2.12.0",
-    "parcel": "^2.12.0"
+    "parcel": "^2.12.0",
+    "snazzy": "^9.0.0",
+    "standard": "^17.1.0"
   }
 }

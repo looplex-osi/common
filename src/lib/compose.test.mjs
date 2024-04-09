@@ -7,9 +7,9 @@ function wait (ms) {
   return new Promise(resolve => setTimeout(resolve, ms || 1))
 }
 
-function isPromise (x) {
-  return x && typeof x.then === 'function'
-}
+// function isPromise (x) {
+//   return x && typeof x.then === 'function'
+// }
 
 describe('# compose', () => {
   it('should work', async () => {
