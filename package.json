@@ -1,6 +1,6 @@
 {
   "name": "@looplex/common",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Common library useful for building things like task automations and workflows",
   "source": "src/index.mjs",
   "main": "dist/main.cjs.js",
@@ -13,7 +13,7 @@
     "test": "node --test",
     "prepare": "husky",
     "commit": "cz",
-    "release": "(standard-version) -and (git push --follow-tags origin master) -and (npm publish)"
+    "release": "(standard-version) -and (git push --follow-tags origin master) -and (npm publish --access public)"
   },
   "keywords": [],
   "author": "Fabio Zendhi Nagao",
