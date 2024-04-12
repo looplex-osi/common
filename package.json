@@ -1,6 +1,6 @@
 {
   "name": "@looplex/common",
-  "version": "0.0.3",
+  "version": "0.2.1",
   "description": "Common library useful for building things like task automations and workflows",
   "source": "src/index.mjs",
   "main": "dist/main.cjs.js",
