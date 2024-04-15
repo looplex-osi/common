@@ -8,13 +8,7 @@ export default function compose (middlewares) {
     }
   }
   return function (context, next) {
-    let index = -1
-    return dispatch(0)
     function dispatch (i) {
-      if (i <= index) {
-        return Promise.reject(new Error('next() called multiple times'))
-      }
-      index = i
       const middleware = i === middlewares.length ? next : middlewares[i]
       if (!middleware) {
         return Promise.resolve()
@@ -25,5 +19,6 @@ export default function compose (middlewares) {
         return Promise.reject(err)
       }
     }
+    return dispatch(0)
   }
 }

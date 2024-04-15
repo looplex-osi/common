@@ -1,6 +1,6 @@
 {
   "name": "@looplex/common",
-  "version": "0.2.1",
+  "version": "0.0.0",
   "description": "Common library useful for building things like task automations and workflows",
   "source": "src/index.mjs",
   "main": "dist/main.cjs.js",
@@ -9,12 +9,15 @@
     "watch": "parcel watch",
     "prebuild": "node --test --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=report.lcov",
     "build": "parcel build --reporter @parcel/reporter-bundle-analyzer",
-    "pretest": "standard | snazzy",
+    "pretest": "standard --verbose | snazzy",
     "test": "node --test",
     "prepare": "husky",
     "commit": "cz",
-    "release": "(standard-version) -and (git push --follow-tags origin master) -and (npm publish --access public)"
+    "release": "(standard-version) -and (git push --follow-tags origin master)"
   },
+  "files": [
+    "dist"
+  ],
   "keywords": [],
   "author": "Fabio Zendhi Nagao",
   "license": "ISC",
