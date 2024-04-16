@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.8](https://github.com/looplex-osi/common/compare/v0.0.7...v0.0.8) (2024-04-16)
+
+
+### Bug Fixes
+
+* using `actions/create-release` ([1e59ea4](https://github.com/looplex-osi/common/commit/1e59ea4b67f3478f1c9c115496beeaf2606a98bf))
+
 ### [0.0.7](https://github.com/looplex-osi/common/compare/v0.0.6...v0.0.7) (2024-04-16)
 
 
