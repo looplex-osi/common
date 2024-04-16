@@ -1,0 +1,15 @@
+name: Publish release from tag
+on:
+  push:
+    tags:
+      - '*'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: elgohr/Github-Release-Action@v5
+        env:
+          GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        with:
+          title: ${{vars.GITHUB_REF_NAME}}
