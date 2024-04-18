@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.10](https://github.com/looplex-osi/common/compare/v0.0.9...v0.0.10) (2024-04-18)
+
+
+### Features
+
+* implement coverage report ([e6ceff7](https://github.com/looplex-osi/common/commit/e6ceff71f67aa6ab29abf761e4250b2de7bd66cc))
+* implement coverage report ([dffad3b](https://github.com/looplex-osi/common/commit/dffad3b2e3416dd2a5b825f4b102711843d8272a))
+* **pluginmanager:** implement pluginManager ([ea76ec3](https://github.com/looplex-osi/common/commit/ea76ec3fcb05d0518d2be0a38662b9d71b3f6bbf))
+* **pluginmanager:** implement pluginManager ([1989f62](https://github.com/looplex-osi/common/commit/1989f6226abd075d548f083174fe6586d69f17a0))
+
 ### [0.0.9](https://github.com/looplex-osi/common/compare/v0.0.8...v0.0.9) (2024-04-17)
 
 ### [0.0.8](https://github.com/looplex-osi/common/compare/v0.0.7...v0.0.8) (2024-04-16)
