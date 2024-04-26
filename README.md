@@ -1,5 +1,9 @@
 # @looplex/common
 
+<p align="center">
+  <img src="https://github.com/looplex-osi/common/blob/master/logomark.png?raw=true" alt="@looplex/common logomark" width="512" />
+</p>
+
 [![Parcel](https://img.shields.io/badge/built_by-parcel-8DD6F9.svg?style=for-the-badge&logo=webpack)](https://parceljs.org/getting-started/library/)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-f7df1e.svg?style=for-the-badge&logo=standardjs)](https://standardjs.com)
 [![Node.js Test Runner](https://img.shields.io/badge/test_by-node-c21325.svg?style=for-the-badge&logo=nodedotjs)](https://nodejs.org/api/test.html)
@@ -9,7 +13,9 @@
 [![Semantic Release](https://img.shields.io/badge/semantic-release-cb3837.svg?style=for-the-badge&logo=semantic-release)](https://semantic-release.gitbook.io/semantic-release/)
 [![Code Coverage](https://img.shields.io/badge/observability_with-coverage-3F5767.svg?style=for-the-badge&logo=coveralls)](https://coveralls.io/)
 
-Common library useful for building task automations and workflows
+## About
+
+Common library useful for both browser and server environments. This library is embedded on all runtimes.
 
 ## Features
 
