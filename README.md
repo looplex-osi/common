@@ -15,7 +15,7 @@
 
 ## About
 
-Common library useful for both browser and server environments. This library is embedded on all runtimes.
+`@looplex/common` plays an important role in our platform engineering mission. It's useful at both browser and server environments. Rest assured knowing that it is embedded on the runtime you are using.
 
 ## Features
 
@@ -36,6 +36,17 @@ Common library useful for both browser and server environments. This library is 
 ```bash
 npm install @looplex/common
 ```
+
+## Standards and Rules
+
+| Context                                |                            Specification                             |
+|:---------------------------------------|:--------------------------------------------------------------------:|
+| Storing and Sharing **Date and Time**  | [ISO 8601 Z](https://www.iso.org/iso-8601-date-and-time-format.html) |
+| Storing and Sharing **Country Codes**  |     [ISO 3166](https://www.iso.org/iso-3166-country-codes.html)      |
+| Storing and Sharing **Language Codes** |     [ISO 639-1](https://www.iso.org/iso-639-language-codes.html)     |
+| Storing and Sharing **Currency Codes** |     [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html)     |
+| Runtime **Charset**                    |                            UTF-8 (65001)                             |
+| Runtime **Language Code**              |                             en-US (1033)                             |
 
 ## Contributing
 
