@@ -6,7 +6,7 @@
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-f7df1e.svg?style=for-the-badge&logo=standardjs)](https://standardjs.com)
 [![Node.js Test Runner](https://img.shields.io/badge/test_by-node-c21325.svg?style=for-the-badge&logo=nodedotjs)](https://nodejs.org/api/test.html)
 [![Software Composition Analysis](https://img.shields.io/badge/sca_by-dependabot-025E8C.svg?style=for-the-badge&logo=dependabot)](https://github.com/features/security)
-[![Static Analysis Security Test](https://img.shields.io/badge/sast_by-codeql-0f305f.svg?style=for-the-badge&logo=snyk)](https://codeql.github.com/)
+[![Static Application Security Test](https://img.shields.io/badge/sast_by-codeql-0f305f.svg?style=for-the-badge&logo=snyk)](https://codeql.github.com/)
 [![Commitizen Friendly](https://img.shields.io/badge/commitizen-friendly-f05032.svg?style=for-the-badge&logo=git)](http://commitizen.github.io/cz-cli/)
 [![Semantic Release](https://img.shields.io/badge/semantic-release-cb3837.svg?style=for-the-badge&logo=semantic-release)](https://semantic-release.gitbook.io/semantic-release/)
 [![Code Coverage](https://img.shields.io/badge/observability_with-coverage-3F5767.svg?style=for-the-badge&logo=coveralls)](https://coveralls.io/)
@@ -22,7 +22,7 @@
 - [Native Test Runner](https://nodejs.org/api/test.html)
 - [Native Watch Mode](https://nodejs.org/docs/v20.12.1/api/test.html#watch-mode)
 - [Built-in Software Composition Analysis (SCA)](https://github.com/dependabot)
-- [Built-in Static Analysis Security Testing (SAST)](https://codeql.github.com/)
+- [Built-in Static Application Security Testing (SAST)](https://codeql.github.com/)
 - [Enforced Coding Standard](https://standardjs.com/)
 - [Enforced Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
 - [Enforced Semantic Release](https://semver.org/)
@@ -103,3 +103,4 @@ See [`LICENSE.md`](/LICENSE.md) for more information.
 * [README logos](https://stock.adobe.com/br/contributor/208853516/hasan?load_type=author) -- logos repository with the same pattern we are using.
 * [Simple Icons](https://simpleicons.org/) -- `shields.io` badges icons and colors.
 * [JSDoc Reference](https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html) for great DX without enforcing a transpilation.
+* [OWASP Application Security Tools](https://owasp.org/www-community/Free_for_Open_Source_Application_Security_Tools)
