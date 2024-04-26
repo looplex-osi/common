@@ -1,5 +1,3 @@
-# @looplex/common
-
 <p align="center">
   <img src="https://github.com/looplex-osi/common/blob/master/logomark.png?raw=true" alt="@looplex/common logomark" width="512" />
 </p>
@@ -13,11 +11,11 @@
 [![Semantic Release](https://img.shields.io/badge/semantic-release-cb3837.svg?style=for-the-badge&logo=semantic-release)](https://semantic-release.gitbook.io/semantic-release/)
 [![Code Coverage](https://img.shields.io/badge/observability_with-coverage-3F5767.svg?style=for-the-badge&logo=coveralls)](https://coveralls.io/)
 
-## About
+# About
 
 `@looplex/common` plays an important role in our platform engineering mission. It's useful at both browser and server environments. Rest assured knowing that it is embedded on the runtime you are using.
 
-## Features
+# Features
 
 - [Modern Build Tool](https://parceljs.org/getting-started/library/)
 - [Native Assertion Module](https://nodejs.org/api/assert.html)
@@ -29,7 +27,7 @@
 - [Enforced Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
 - [Enforced Semantic Release](https://semver.org/)
 
-## Usage
+# Usage
 
 `@looplex/common` is available and ready for use on all Looplex enviornment. But if, for some reason, you want to leverage it as a standalone, the easiest way to install is by running:
 
@@ -37,7 +35,7 @@
 npm install @looplex/common
 ```
 
-## Standards and Rules
+# Standards and Rules
 
 | Context                                |                            Specification                             |
 |:---------------------------------------|:--------------------------------------------------------------------:|
@@ -48,7 +46,7 @@ npm install @looplex/common
 | Runtime **Charset**                    |                            UTF-8 (65001)                             |
 | Runtime **Language Code**              |                             en-US (1033)                             |
 
-## Contributing
+# Contributing
 
 We welcome contributions! Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
@@ -82,26 +80,26 @@ gitGraph
 1. Push to the Branch (`git push origin feature/amazing`)
 1. Open a Pull Request
 
-## Maintainers
+# Maintainers
 
 As soon as the maintainers are satisfied with the feature set to be released, they should:
 
 1. Evaluate the quality of the package through the bundle-analyzer report.
-1. Run npm run release.
+1. Run `npm run release`.
 1. Confirm if the package is available in npm as the latest version.
 1. Notify the maintainers of project embedding this library for faster adoption.
 
-## License
+# License
 
 This project is licensed under the Looplex Limited Public License. Feel free to edit and distribute this template as you like.
 
 See [`LICENSE.md`](/LICENSE.md) for more information.
 
-## Acknowledgments
+# Acknowledgments
 * Special thanks to CEO Angelo Caldeira for enabling this initiative and to our CTO [Fabio Nagao](https://github.com/nagaozen/) who created the framework of this library.
 * Shoutout to [looplex contributors](https://github.com/orgs/looplex/people) for their outstanding effort on releasing open source software.
 
-## Useful links
+# Useful links
 * [README logos](https://stock.adobe.com/br/contributor/208853516/hasan?load_type=author) -- logos repository with the same pattern we are using.
 * [Simple Icons](https://simpleicons.org/) -- `shields.io` badges icons and colors.
 * [JSDoc Reference](https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html) for great DX without enforcing a transpilation.
