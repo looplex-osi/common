@@ -92,6 +92,4 @@ Term and Termination. The term of this Agreement will commence upon your accepta
 
 Separate Licensing Terms for the Looplex Platform. The use and access to the Looplex Platform is governed by and subject to a distinct set of commercial terms of use and licensing agreements, which can be found in https://docs.looplex.com.br/pt-BR/legal/product/terms-of-use.
 
-Governing Law and Jurisdiction. This Agreement will be governed and construed under the laws of the Brazil, and the UN Convention on Contracts for the International Sale of Goods does
-
-not apply to this Agreement. The courts of São Paulo, SP, Brazil shall have exclusive jurisdiction of any dispute arising out of this Agreement.
+Governing Law and Jurisdiction. This Agreement will be governed and construed under the laws of the Brazil, and the UN Convention on Contracts for the International Sale of Goods does not apply to this Agreement. The courts of São Paulo, SP, Brazil shall have exclusive jurisdiction of any dispute arising out of this Agreement.
