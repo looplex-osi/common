@@ -15,7 +15,7 @@ function asciiFrom (str) {
   return str
     .normalize('NFKD')
     .replace(/\p{Diacritic}/gu, '')
-    .replace(/[^ 0-0a-zA-Z]/gi, '')
+    .replace(/[^ 0-9a-zA-Z]/gi, '')
     .trim()
 }
 
