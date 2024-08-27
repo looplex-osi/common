@@ -47,7 +47,7 @@ describe('# micromustache', () => {
 
   it('should handle whitespace inside placeholders', () => {
     const template = 'Hello, {{ name }}!'
-    const datasource = { ' name ': 'Charlie' }
+    const datasource = { name: 'Charlie' }
     assert.strictEqual(micromustache(template, datasource), 'Hello, Charlie!')
   })
 })

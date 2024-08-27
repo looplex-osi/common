@@ -13,7 +13,13 @@
  */
 function micromustache (template, datasource) {
   const tag = /\{\{([^}]+)\}\}/gim
-  return template.replace(tag, function (match, name) { return datasource[name] ?? '{{' + name + '}}' })
+  return template.replace(tag, function (match, name) {
+    const path = name.trim().split('.')
+    let i = 0
+    let node = datasource
+    while (node && i < path.length) node = node[path[i++]]
+    return node ?? '{{' + name + '}}'
+  })
 }
 
 export default micromustache
