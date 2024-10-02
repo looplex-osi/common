@@ -3,7 +3,7 @@ import assert from 'node:assert'
 
 import _get from './_get.mjs'
 
-describe('_get', () => {
+describe('# _get', () => {
   it('should retrieve the value at a simple path', () => {
     const obj = { a: { b: { c: 42 } } }
     const value = _get(obj, 'a.b.c')

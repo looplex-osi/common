@@ -3,7 +3,7 @@ import assert from 'node:assert'
 
 import itFromPath from './itFromPath.mjs'
 
-describe('itFromPath', () => {
+describe('# itFromPath', () => {
   it('should handle simple dot notation paths', () => {
     assert.deepStrictEqual(itFromPath('a.b.c'), ['a', 'b', 'c'])
   })

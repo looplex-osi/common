@@ -3,7 +3,7 @@ import assert from 'node:assert'
 
 import _set from './_set.mjs'
 
-describe('_set', () => {
+describe('# _set', () => {
   it('should set a value at a simple path', () => {
     const obj = {}
     _set(obj, 'a.b.c', 42)
