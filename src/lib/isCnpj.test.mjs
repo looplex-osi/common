@@ -1,7 +1,7 @@
 import { describe, it } from 'node:test'
 import assert from 'node:assert'
 
-import isCnpj from './isCNPJ.mjs'
+import isCnpj from './isCnpj.mjs'
 
 describe('# isCnpj', () => {
   const valid = '90.018.299/0001-02'
