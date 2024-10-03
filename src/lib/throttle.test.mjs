@@ -64,7 +64,7 @@ describe('# throttle', () => {
   })
 
   it('should handle rapid calls and only execute as per throttle limit', async () => {
-    for (let i = 0 i < 10 i++) {
+    for (let i = 0; i < 10; i++) {
       throttledFunction()
       await setTimeout(20)
     }
@@ -77,7 +77,7 @@ describe('# throttle', () => {
 
   it('should not execute the function if called only within the wait period', async () => {
     throttledFunction()
-    for (let i = 0 i < 5 i++) {
+    for (let i = 0; i < 5; i++) {
       await setTimeout(50)
       throttledFunction()
     }

@@ -65,7 +65,7 @@ describe('# debounce', () => {
   })
 
   it('should call the function only once for rapid successive calls', async () => {
-    for (let i = 0 i < 5 i++) {
+    for (let i = 0; i < 5; i++) {
       debouncedFunction()
       await setTimeout(20)
     }
@@ -92,7 +92,7 @@ describe('# debounce', () => {
 
   it('should not call the function if never allowed to elapse', async () => {
     debouncedFunction()
-    for (let i = 0 i < 5 i++) {
+    for (let i = 0; i < 5; i++) {
       await setTimeout(50)
       debouncedFunction()
     }
