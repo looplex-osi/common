@@ -1,3 +1,4 @@
+import typeOf from './typeOf.mjs'
 import itFromPath from './itFromPath.mjs'
 
 /**
@@ -18,23 +19,25 @@ import itFromPath from './itFromPath.mjs'
  * console.log(obj) // { a: { b: { c: 42 } }, x: [ { y: 'value' } ] }
  */
 export function _set (obj, path, value) {
+  if (typeOf(obj) !== 'object') throw new TypeError('Cannot read property')
   let o = obj
-  let it = itFromPath(path)
+  const it = itFromPath(path)
   for (let i = 0, len = it.length; i < len; i++) {
-    let key = it[i]
+    const { key } = it[i]
     if (i === len - 1) {
       // last key, set the value
       o[key] = value
     } else {
       // if the key doesn't exist or is not an object, create it
       if (!(key in o) || typeof o[key] !== 'object' || o[key] === null) {
-        let nextKey = it[i + 1]
-        o[key] = (/^\d+$/).test(nextKey) ? [] : {}
+        const next = it[i + 1]
+        if (next) o[key] = next.isArrayIndex ? [] : {}
       }
       // walk
       o = o[key]
     }
   }
+  return obj
 }
 
 export default _set

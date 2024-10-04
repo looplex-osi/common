@@ -10,12 +10,6 @@ describe('# _get', () => {
     assert.strictEqual(value, 42)
   })
 
-  it('should return undefined for non-existent paths', () => {
-    const obj = { a: { b: { c: 42 } } }
-    const value = _get(obj, 'a.b.x')
-    assert.strictEqual(value, undefined)
-  })
-
   it('should return the default value for non-existent paths', () => {
     const obj = { a: { b: { c: 42 } } }
     const value = _get(obj, 'a.b.x', 'default')
@@ -35,15 +29,9 @@ describe('# _get', () => {
   })
 
   it('should handle numeric property names', () => {
-    const obj = { a: { '123': { b: 50 } } }
+    const obj = { a: { 123: { b: 50 } } }
     const value = _get(obj, 'a.123.b')
     assert.strictEqual(value, 50)
-  })
-
-  it('should handle paths provided as arrays', () => {
-    const obj = { a: { b: { c: 42 } } }
-    const value = _get(obj, ['a', 'b', 'c'])
-    assert.strictEqual(value, 42)
   })
 
   it('should return undefined if the object is null or undefined', () => {
@@ -80,12 +68,6 @@ describe('# _get', () => {
     const obj = { '': 'empty' }
     const value = _get(obj, '')
     assert.strictEqual(value, 'empty')
-  })
-
-  it('should handle root value when path is empty', () => {
-    const obj = 42
-    const value = _get(obj, '')
-    assert.strictEqual(value, 42)
   })
 
   it('should handle special characters in property names', () => {

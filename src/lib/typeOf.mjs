@@ -22,7 +22,7 @@
  * typeOf(BigInt(123));     // 'bigint'
  */
 export function typeOf (x) {
-  return Object.prototype.toString.call(x).slice(8,-1).toLowerCase()
+  return Object.prototype.toString.call(x).slice(8, -1).toLowerCase()
 }
 
 export default typeOf

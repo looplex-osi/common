@@ -15,7 +15,7 @@ describe('# typeOf', () => {
   it('should return "string" for string values', () => {
     assert.strictEqual(typeOf(''), 'string')
     assert.strictEqual(typeOf('Hello'), 'string')
-    assert.strictEqual(typeOf(`Template`), 'string')
+    assert.strictEqual(typeOf('Template'), 'string')
   })
 
   it('should return "boolean" for boolean values', () => {
@@ -45,7 +45,7 @@ describe('# typeOf', () => {
   it('should return "function" for functions', () => {
     assert.strictEqual(typeOf(function () {}), 'function')
     assert.strictEqual(typeOf(() => {}), 'function')
-    assert.strictEqual(typeOf(async function () {}), 'function')
+    assert.strictEqual(typeOf(async function () {}), 'asyncfunction')
   })
 
   it('should return "date" for Date objects', () => {
@@ -54,11 +54,11 @@ describe('# typeOf', () => {
 
   it('should return "regexp" for RegExp objects', () => {
     assert.strictEqual(typeOf(/regex/), 'regexp')
-    assert.strictEqual(typeOf(new RegExp('regex')), 'regexp')
+    assert.strictEqual(typeOf(new RegExp('regex')), 'regexp')// eslint-disable-line prefer-regex-literals
   })
 
   it('should return "symbol" for Symbol values', () => {
-    assert.strictEqual(typeOf(Symbol()), 'symbol')
+    assert.strictEqual(typeOf(Symbol()), 'symbol')// eslint-disable-line symbol-description
     assert.strictEqual(typeOf(Symbol('id')), 'symbol')
   })
 
@@ -101,7 +101,7 @@ describe('# typeOf', () => {
 
   it('should handle custom objects with Symbol.toStringTag', () => {
     class CustomClass {
-      get [Symbol.toStringTag]() {
+      get [Symbol.toStringTag] () {
         return 'Custom'
       }
     }

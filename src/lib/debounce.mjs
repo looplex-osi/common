@@ -25,8 +25,17 @@
 export function debounce (fun, delay) {
   let timeoutId
   return function (...args) {
+    const that = this
     clearTimeout(timeoutId)
-    timeoutId = setTimeout(() => fun.apply(this, args), delay)
+    const isAsync = fun.constructor.name === 'AsyncFunction'
+    if (isAsync) {
+      const p = new Promise((resolve, reject) => {
+        timeoutId = setTimeout(() => fun.apply(that, args).then(resolve).catch(reject), delay)
+      })
+      return p
+    } else {
+      timeoutId = setTimeout(() => fun.apply(that, args), delay)
+    }
   }
 }
 

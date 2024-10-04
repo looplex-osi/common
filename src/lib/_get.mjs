@@ -6,6 +6,7 @@ import itFromPath from './itFromPath.mjs'
  *
  * @param {Object} obj - The object to query.
  * @param {string | Array<string | number>} path - The path of the property to get.
+ * @param {*} [defaultValue] - The value returned if the resolved value is undefined.
  * @returns {*} The value at the specified path.
  *
  * @example
@@ -13,14 +14,14 @@ import itFromPath from './itFromPath.mjs'
  * const value = _get(obj, 'a.b.c')
  * console.log(value) // 42
  */
-export function _get (obj, path) {
+export function _get (obj, path, defaultValue) {
   let o = obj
-  let it = itFromPath(path)
+  const it = itFromPath(path)
   for (let i = 0, len = it.length; i < len; i++) {
-    let key = it[i]
-    if (o == null) return void(0) // check for both null and undefined
-    if (i === len - 1) return o[key]
-    if (!(key in o)) return void 0
+    const { key } = it[i]
+    if (o == null) return defaultValue
+    if (i === len - 1) return key in o ? o[key] : defaultValue
+    if (!(key in o)) return defaultValue
     o = o[key]
   }
 }

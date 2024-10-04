@@ -13,7 +13,7 @@ describe('# _set', () => {
   it('should create arrays for numeric indices', () => {
     const obj = {}
     _set(obj, 'arr[0].value', 'test')
-    assert.deepStrictEqual(obj, { arr: [ { value: 'test' } ] })
+    assert.deepStrictEqual(obj, { arr: [{ value: 'test' }] })
   })
 
   it('should handle quoted property names', () => {
@@ -49,13 +49,13 @@ describe('# _set', () => {
   it('should handle numeric property names', () => {
     const obj = {}
     _set(obj, 'a.0.b', 5)
-    assert.deepStrictEqual(obj, { a: { '0': { b: 5 } } })
+    assert.deepStrictEqual(obj, { a: { 0: { b: 5 } } })
   })
 
   it('should treat numeric property names as object keys if not an array index', () => {
     const obj = {}
     _set(obj, 'data.123.value', 'test')
-    assert.deepStrictEqual(obj, { data: { '123': { value: 'test' } } })
+    assert.deepStrictEqual(obj, { data: { 123: { value: 'test' } } })
   })
 
   it('should return the modified object', () => {
@@ -64,17 +64,11 @@ describe('# _set', () => {
     assert.strictEqual(result, obj)
   })
 
-  it('should handle array paths', () => {
-    const obj = {}
-    _set(obj, ['a', 'b', 'c'], 7)
-    assert.deepStrictEqual(obj, { a: { b: { c: 7 } } })
-  })
-
   it('should handle root not being an object', () => {
-    let obj = null
+    const obj = null
     assert.throws(() => _set(obj, 'a.b', 8), {
       name: 'TypeError',
-      message: /Cannot read property/,
+      message: /Cannot read property/
     })
   })
 

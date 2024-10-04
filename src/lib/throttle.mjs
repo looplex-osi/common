@@ -15,8 +15,8 @@
  */
 export function throttle (fun, wait) {
   let lastCall = 0
-  return function(...args) {
-    let now = Date.now()
+  return function (...args) {
+    const now = Date.now()
     if (now - lastCall >= wait) {
       lastCall = now
       return fun.apply(this, args)

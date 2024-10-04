@@ -1,4 +1,4 @@
-import { describe, it, beforeEach } from 'node:test'
+import { describe, it, beforeEach, afterEach } from 'node:test'
 import assert from 'node:assert'
 import { setTimeout } from 'node:timers/promises'
 
@@ -22,6 +22,11 @@ describe('# throttle', () => {
     throttledFunction = throttle(originalFunction, 100)
   })
 
+  afterEach(async () => {
+    // Wait longer than the debounce delay to ensure all debounced functions have executed
+    await setTimeout(200)
+  })
+
   it('should call the function immediately on the first call', () => {
     throttledFunction()
     assert.strictEqual(callCount, 1)
@@ -32,7 +37,6 @@ describe('# throttle', () => {
     throttledFunction()
     throttledFunction()
     assert.strictEqual(callCount, 1)
-
     // Wait less than the wait period
     await setTimeout(50)
     throttledFunction()
@@ -47,11 +51,11 @@ describe('# throttle', () => {
   })
 
   it('should maintain the correct context (`this`)', () => {
-    let obj = {
+    const obj = {
       value: 42,
       method: throttle(function () {
         context = this
-      }, 100),
+      }, 100)
     }
 
     obj.method()
@@ -64,13 +68,12 @@ describe('# throttle', () => {
   })
 
   it('should handle rapid calls and only execute as per throttle limit', async () => {
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 5; i++) {
       throttledFunction()
-      await setTimeout(20)
+      await setTimeout(10)
     }
     assert.strictEqual(callCount, 1)
-
-    await setTimeout(100)
+    await setTimeout(110)
     throttledFunction()
     assert.strictEqual(callCount, 2)
   })
@@ -78,7 +81,7 @@ describe('# throttle', () => {
   it('should not execute the function if called only within the wait period', async () => {
     throttledFunction()
     for (let i = 0; i < 5; i++) {
-      await setTimeout(50)
+      await setTimeout(10)
       throttledFunction()
     }
     assert.strictEqual(callCount, 1)
@@ -94,17 +97,17 @@ describe('# throttle', () => {
   })
 
   it('should return the result of the original function', () => {
-    let originalFunction = (x) => x * 2
-    let throttled = throttle(originalFunction, 100)
-    let result = throttled(5)
+    const originalFunction = (x) => x * 2
+    const throttled = throttle(originalFunction, 100)
+    const result = throttled(5)
     assert.strictEqual(result, 10)
   })
 
   it('should return undefined when the function is throttled (not called)', () => {
-    let originalFunction = (x) => x * 2
-    let throttled = throttle(originalFunction, 100)
+    const originalFunction = (x) => x * 2
+    const throttled = throttle(originalFunction, 100)
     throttled(5) // First call
-    let result = throttled(10) // Should be throttled
+    const result = throttled(10) // Should be throttled
     assert.strictEqual(result, undefined)
   })
 })

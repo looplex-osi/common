@@ -1,10 +1,10 @@
-import { describe, it, beforeEach } from 'node:test'
+import { describe, it, beforeEach, afterEach } from 'node:test'
 import assert from 'node:assert'
 import { setTimeout } from 'node:timers/promises'
 
 import debounce from './debounce.mjs'
 
-describe('# debounce', () => {
+describe('debounce', () => {
   let callCount
   let debouncedFunction
   let context
@@ -22,6 +22,11 @@ describe('# debounce', () => {
     debouncedFunction = debounce(originalFunction, 100)
   })
 
+  afterEach(async () => {
+    // Wait longer than the debounce delay to ensure all debounced functions have executed
+    await setTimeout(200)
+  })
+
   it('should not call the function immediately', () => {
     debouncedFunction()
     assert.strictEqual(callCount, 0)
@@ -30,7 +35,6 @@ describe('# debounce', () => {
   it('should call the function after the delay', async () => {
     debouncedFunction()
     assert.strictEqual(callCount, 0)
-
     await setTimeout(150)
     assert.strictEqual(callCount, 1)
   })
@@ -46,11 +50,11 @@ describe('# debounce', () => {
   })
 
   it('should maintain the correct context (`this`)', async () => {
-    let obj = {
+    const obj = {
       value: 42,
       method: debounce(function () {
         context = this
-      }, 100),
+      }, 100)
     }
 
     obj.method()
@@ -77,8 +81,12 @@ describe('# debounce', () => {
     let callCountA = 0
     let callCountB = 0
 
-    const funcA = debounce(() => { callCountA++ }, 100)
-    const funcB = debounce(() => { callCountB++ }, 100)
+    const funcA = debounce(() => {
+      callCountA++
+    }, 100)
+    const funcB = debounce(() => {
+      callCountB++
+    }, 100)
 
     funcA()
     funcB()
@@ -102,7 +110,9 @@ describe('# debounce', () => {
 
   it('should handle zero delay', async () => {
     let immediateCallCount = 0
-    const immediateFunction = debounce(() => { immediateCallCount++ }, 0)
+    const immediateFunction = debounce(() => {
+      immediateCallCount++
+    }, 0)
 
     immediateFunction()
     assert.strictEqual(immediateCallCount, 0)
@@ -117,8 +127,7 @@ describe('# debounce', () => {
       await setTimeout(50)
       result = 'done'
     }, 100)
-
-    asyncFunction()
+    await asyncFunction()
     await setTimeout(150)
     assert.strictEqual(result, 'done')
   })
