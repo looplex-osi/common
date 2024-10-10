@@ -68,7 +68,7 @@ describe('# _set', () => {
     const obj = null
     assert.throws(() => _set(obj, 'a.b', 8), {
       name: 'TypeError',
-      message: /Cannot read property/
+      message: 'Cannot read property'
     })
   })
 

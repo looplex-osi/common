@@ -57,7 +57,6 @@ describe('# throttle', () => {
         context = this
       }, 100)
     }
-
     obj.method()
     assert.strictEqual(context, obj)
   })

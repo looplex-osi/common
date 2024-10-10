@@ -4,7 +4,7 @@ import { setTimeout } from 'node:timers/promises'
 
 import debounce from './debounce.mjs'
 
-describe('debounce', () => {
+describe('# debounce', () => {
   let callCount
   let debouncedFunction
   let context
@@ -56,7 +56,6 @@ describe('debounce', () => {
         context = this
       }, 100)
     }
-
     obj.method()
     await setTimeout(150)
     assert.strictEqual(context, obj)
@@ -80,19 +79,16 @@ describe('debounce', () => {
   it('should handle multiple independent debounced functions', async () => {
     let callCountA = 0
     let callCountB = 0
-
     const funcA = debounce(() => {
       callCountA++
     }, 100)
     const funcB = debounce(() => {
       callCountB++
     }, 100)
-
     funcA()
     funcB()
     funcA()
     funcB()
-
     await setTimeout(150)
     assert.strictEqual(callCountA, 1)
     assert.strictEqual(callCountB, 1)
@@ -113,10 +109,8 @@ describe('debounce', () => {
     const immediateFunction = debounce(() => {
       immediateCallCount++
     }, 0)
-
     immediateFunction()
     assert.strictEqual(immediateCallCount, 0)
-
     await setTimeout(10)
     assert.strictEqual(immediateCallCount, 1)
   })
@@ -136,7 +130,6 @@ describe('debounce', () => {
     debouncedFunction('first')
     debouncedFunction('second')
     debouncedFunction('third')
-
     await setTimeout(150)
     assert.strictEqual(callCount, 1)
     assert.deepStrictEqual(argsPassed, ['third'])

@@ -13,9 +13,11 @@ describe('# asciiFrom', () => {
     assert.strictEqual(asciiFrom([]), '')
     assert.strictEqual(asciiFrom({}), '')
   })
+
   it('should convert using compatibility normalization', () => {
     assert.strictEqual(asciiFrom('ﬀ Ⓓ'), 'ff D')
   })
+
   it('should remove diatrics', () => {
     assert.strictEqual(asciiFrom('áéíóú âêîôû àèìòù ãõñ äëïöü ç'), 'aeiou aeiou aeiou aon aeiou c')
   })

@@ -1,4 +1,4 @@
-import compose from './lib/compose.mjs'
+import compose from './lib/middlewares.mjs'
 
 export default {
   compose
