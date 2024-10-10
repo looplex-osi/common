@@ -9,10 +9,10 @@
  * @returns {Array<string|number>} - The array of keys representing the path.
  *
  * @example
- * itFromPath('a.b.c'); // returns ['a', 'b', 'c']
- * itFromPath('a[0].b'); // returns ['a', '0', 'b']
- * itFromPath('a["b"].c'); // returns ['a', 'b', 'c']
- * itFromPath("a['b'].c"); // returns ['a', 'b', 'c']
+ * itFromPath('a.b.c'); // returns [{ key: 'a', isArrayIndex: false }, { key: 'b', isArrayIndex: false }, { key: 'c', isArrayIndex: false }]
+ * itFromPath('a[0].b'); // returns [{ key: 'a', isArrayIndex: false }, { key: '0', isArrayIndex: true }, { key: 'b', isArrayIndex: false }]
+ * itFromPath('a["b"].c'); // returns [{ key: 'a', isArrayIndex: false }, { key: 'b', isArrayIndex: false }, { key: 'c', isArrayIndex: false }]
+ * itFromPath("a['b'].c"); // returns [{ key: 'a', isArrayIndex: false }, { key: 'b', isArrayIndex: false }, { key: 'c', isArrayIndex: false }]
  */
 export function itFromPath (path) {
   if (path === '') return [{ key: '', isArrayIndex: false }]
