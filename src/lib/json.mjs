@@ -5,7 +5,7 @@ import { typeOf } from './typeOf.mjs'
  * The traversal stops and returns when the visit function returns a truthy value.
  *
  * @async
- * @function walk
+ * @function traverse
  * @param {*} node - The current node to process. Can be of any type.
  * @param {function} visit - An asynchronous function that is called with the current node and its path.
  *                           Should return a boolean or a Promise that resolves to a boolean.
@@ -15,14 +15,14 @@ import { typeOf } from './typeOf.mjs'
  *          returns an object containing the matching node and its path.
  *          If the traversal completes without the visit function returning a truthy value, returns undefined.
  */
-export async function walk (node, visit, path = '$') {
+export async function traverse (node, visit, path = '$') {
   if (await visit(node, path)) { return ({ node, path }) }
   switch (typeOf(node)) {
     case 'object': {
       const keys = Object.keys(node)
       for (let i = 0; i < keys.length; i++) {
         const key = keys[i]
-        const result = await walk(node[key], visit, `${path}.${key}`)
+        const result = await traverse(node[key], visit, `${path}.${key}`)
         if (result) return result
       }
       break
@@ -30,7 +30,7 @@ export async function walk (node, visit, path = '$') {
     case 'array': {
       for (let i = 0; i < node.length; i++) {
         const item = node[i]
-        const result = await walk(item, visit, `${path}[${i}]`)
+        const result = await traverse(item, visit, `${path}[${i}]`)
         if (result) return result
       }
       break

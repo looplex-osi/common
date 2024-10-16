@@ -1,9 +1,9 @@
 import { describe, it } from 'node:test'
 import { strict as assert } from 'node:assert'
 
-import { walk } from './json.mjs'
+import { traverse } from './json.mjs'
 
-describe('# walk', () => {
+describe('# traverse', () => {
   it('should find a matching node in an object', async () => {
     const data = {
       id: 1,
@@ -17,7 +17,7 @@ describe('# walk', () => {
     const visit = async (node, path) => {
       return node === 'Wonderland'
     }
-    const result = await walk(data, visit)// ?
+    const result = await traverse(data, visit)// ?
     assert.deepEqual(result, {
       node: 'Wonderland',
       path: '$.address.city'
@@ -37,7 +37,7 @@ describe('# walk', () => {
     const visit = async (node, path) => {
       return node === 'Neverland'
     }
-    const result = await walk(data, visit)
+    const result = await traverse(data, visit)
     assert.strictEqual(result, undefined)
   })
 
@@ -50,7 +50,7 @@ describe('# walk', () => {
     const visit = async (node, path) => {
       return node && node.active === true
     }
-    const result = await walk(data, visit)
+    const result = await traverse(data, visit)
     assert.deepEqual(result, {
       node: { id: 2, name: 'Bob', active: true },
       path: '$[1]'
@@ -70,7 +70,7 @@ describe('# walk', () => {
     const visit = async (node, path) => {
       return node && node.active === true
     }
-    const result = await walk(data, visit)
+    const result = await traverse(data, visit)
     assert.deepEqual(result, {
       node: { id: 2, name: 'Bob', active: true },
       path: '$.group.members[1]'
@@ -84,7 +84,7 @@ describe('# walk', () => {
       count++
       return node === 3
     }
-    const result = await walk(data, visit)
+    const result = await traverse(data, visit)
     assert.deepEqual(result, {
       node: 3,
       path: '$[2]'
@@ -97,7 +97,7 @@ describe('# walk', () => {
     const visit = async (node, path) => {
       return node === 42
     }
-    const result = await walk(data, visit)
+    const result = await traverse(data, visit)
     assert.deepEqual(result, {
       node: 42,
       path: '$'
@@ -109,7 +109,7 @@ describe('# walk', () => {
     const visit = async (node, path) => {
       return false
     }
-    const result = await walk(data, visit)
+    const result = await traverse(data, visit)
     assert.strictEqual(result, undefined)
   })
 
@@ -118,7 +118,7 @@ describe('# walk', () => {
     const visit = async (node, path) => {
       return false
     }
-    const result = await walk(data, visit)
+    const result = await traverse(data, visit)
     assert.strictEqual(result, undefined)
   })
 
@@ -145,7 +145,7 @@ describe('# walk', () => {
       actualPaths.push(path)
       return false
     }
-    await walk(data, visit)
+    await traverse(data, visit)
     assert.deepEqual(actualPaths, expectedPaths)
   })
 
@@ -162,7 +162,7 @@ describe('# walk', () => {
       visitedNodes.push({ node, path })
       return false
     }
-    await walk(data, visit)
+    await traverse(data, visit)
     assert.strictEqual(visitedNodes.length, 5)
     assert.deepEqual(visitedNodes[0], { node: data, path: '$' })
     assert.deepEqual(visitedNodes[1], { node: null, path: '$.a' })
@@ -176,7 +176,7 @@ describe('# walk', () => {
     const visit = null // NOT a function
     await assert.rejects(
       async () => {
-        await walk(data, visit)
+        await traverse(data, visit)
       },
       {
         name: 'TypeError',
