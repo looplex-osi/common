@@ -4,7 +4,8 @@ import assert from 'node:assert'
 import {
   itFromPath,
   _get,
-  _set
+  _set,
+  _delete
 } from './object.mjs'
 
 describe('# object', () => {
@@ -123,12 +124,6 @@ describe('# object', () => {
       assert.strictEqual(value, 50)
     })
 
-    it('should return undefined if the object is null or undefined', () => {
-      const obj = null
-      const value = _get(obj, 'a.b')
-      assert.strictEqual(value, undefined)
-    })
-
     it('should handle intermediate null values', () => {
       const obj = { a: null }
       const value = _get(obj, 'a.b')
@@ -231,7 +226,7 @@ describe('# object', () => {
       const obj = null
       assert.throws(() => _set(obj, 'a.b', 8), {
         name: 'TypeError',
-        message: 'Cannot read property'
+        message: 'obj needs to be an object'
       })
     })
 
@@ -239,6 +234,114 @@ describe('# object', () => {
       const obj = {}
       _set(obj, '', 9)
       assert.deepStrictEqual(obj, { '': 9 })
+    })
+  })
+
+  describe('## _delete', () => {
+    it('should delete a property using dot notation path', () => {
+      const obj = { a: { b: { c: 42 } } }
+      const result = _delete(obj, 'a.b.c')
+      assert.strictEqual(result, true)
+      assert.deepEqual(obj, { a: { b: {} } })
+    })
+
+    it('should delete a property using bracket notation path', () => {
+      const obj = { a: [{ b: 1 }, { c: 2 }] }
+      const result = _delete(obj, 'a[1].c')
+      assert.strictEqual(result, true)
+      assert.deepEqual(obj, { a: [{ b: 1 }, {}] })
+    })
+
+    it('should return true if the property does not exist', () => {
+      const obj = { a: { b: {} } }
+      const result = _delete(obj, 'a.b.c')
+      assert.strictEqual(result, true)
+      assert.deepEqual(obj, { a: { b: {} } })
+    })
+
+    it('should handle deletion at the root level', () => {
+      const obj = { a: 1 }
+      const result = _delete(obj, 'a')
+      assert.strictEqual(result, true)
+      assert.deepEqual(obj, {})
+    })
+
+    it('should throw TypeError when obj is not an object', () => {
+      assert.throws(() => {
+        _delete(null, 'a.b')
+      }, {
+        name: 'TypeError',
+        message: 'obj needs to be an object'
+      })
+      assert.throws(() => {
+        _delete(undefined, 'a.b')
+      }, {
+        name: 'TypeError',
+        message: 'obj needs to be an object'
+      })
+    })
+
+    it('should handle numeric keys in paths', () => {
+      const obj = { a: { b: [1, 2, 3] } }
+      const result = _delete(obj, 'a.b[1]')
+      assert.strictEqual(result, true)
+      assert.deepEqual(obj, { a: { b: [1, 3] } })
+    })
+
+    it('should not delete a property if intermediate path does not exist', () => {
+      const obj = { a: {} }
+      const result = _delete(obj, 'a.b.c')
+      assert.strictEqual(result, true)
+      assert.deepEqual(obj, { a: {} })
+    })
+
+    it('should handle paths with mixed dot and bracket notation', () => {
+      const obj = { a: [{ b: { c: 42 } }] }
+      const result = _delete(obj, 'a[0].b.c')
+      assert.strictEqual(result, true)
+      assert.deepEqual(obj, { a: [{ b: {} }] })
+    })
+
+    it('should not throw an error when deleting a non-existent property from an array', () => {
+      const obj = { a: [] }
+      const result = _delete(obj, 'a[0].b')
+      assert.strictEqual(result, true)
+      assert.deepEqual(obj, { a: [] })
+    })
+
+    it('should delete an element from an array using array index', () => {
+      const obj = { a: [10, 20, 30] }
+      const result = _delete(obj, 'a[1]')
+      assert.strictEqual(result, true)
+      assert.deepEqual(obj, { a: [10, 30] })
+    })
+
+    it('should delete nested array elements', () => {
+      const obj = { a: { b: [{ c: 1 }, { c: 2 }] } }
+      const result = _delete(obj, 'a.b[1].c')
+      assert.strictEqual(result, true)
+      assert.deepEqual(obj, { a: { b: [{ c: 1 }, {}] } })
+    })
+
+    it('should handle invalid paths gracefully', () => {
+      const obj = { a: { b: 1 } }
+      const result = _delete(obj, 'a.b.c.d')
+      assert.strictEqual(result, true)
+      assert.deepEqual(obj, { a: { b: 1 } })
+    })
+
+    it('should delete properties with numeric keys', () => {
+      const obj = { a: { 1: { b: 2 } } }
+      const result = _delete(obj, 'a.1.b')
+      assert.strictEqual(result, true)
+      assert.deepEqual(obj, { a: { 1: {} } })
+    })
+
+    it('should delete properties when path is a single key', () => {
+      const obj = { a: 1, b: 2 }
+      const result = _delete(obj, 'b')
+      assert.strictEqual(result, true)
+      assert.deepEqual(obj, { a: 1 })
     })
   })
 })

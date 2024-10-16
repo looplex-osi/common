@@ -54,6 +54,7 @@ export function itFromPath (path) {
  * console.log(value) // 42
  */
 export function _get (obj, path, defaultValue) {
+  if (typeOf(obj) !== 'object') throw new TypeError('obj needs to be an object')
   let o = obj
   const it = itFromPath(path)
   for (let i = 0, len = it.length; i < len; i++) {
@@ -83,7 +84,7 @@ export function _get (obj, path, defaultValue) {
  * console.log(obj) // { a: { b: { c: 42 } }, x: [ { y: 'value' } ] }
  */
 export function _set (obj, path, value) {
-  if (typeOf(obj) !== 'object') throw new TypeError('Cannot read property')
+  if (typeOf(obj) !== 'object') throw new TypeError('obj needs to be an object')
   let o = obj
   const it = itFromPath(path)
   for (let i = 0, len = it.length; i < len; i++) {
@@ -102,4 +103,44 @@ export function _set (obj, path, value) {
     }
   }
   return obj
+}
+
+/**
+ * Deletes the property at the specified path of the object. If the property does not exist,
+ * the function does nothing. Supports both dot and bracket notation in the path.
+ *
+ * @param {Object} obj - The object from which to delete the property.
+ * @param {string} path - The path of the property to delete.
+ * @returns {boolean} Returns `true` if the property was successfully deleted or if the property did not exist.
+ * @throws {TypeError} Throws if `obj` is not an object or if `path` is not a string.
+ *
+ * @example
+ * const obj = { a: { b: { c: 42 } } }
+ * _delete(obj, 'a.b.c')
+ * console.log(obj) // { a: { b: {} } }
+ *
+ * _delete(obj, 'x[0].y')
+ * console.log(obj) // { a: { b: {} } }
+ */
+export function _delete (obj, path) {
+  if (typeOf(obj) !== 'object') throw new TypeError('obj needs to be an object')
+  if (typeOf(path) !== 'string') throw new TypeError('path needs to be a string')
+  const it = itFromPath(path)
+  let o = obj
+  for (let i = 0, len = it.length; i < len; i++) {
+    const { key, isArrayIndex } = it[i]
+    if (i === len - 1) {
+      // last key, delete value
+      if (isArrayIndex) {
+        o.splice(parseInt(key, 10), 1)
+      } else {
+        delete o[key]
+      }
+      return true
+    }
+    if (!['object', 'array'].includes(typeOf(o))) return true
+    if (!(key in o)) return true
+    o = o[key]
+  }
+  return true
 }
