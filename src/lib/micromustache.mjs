@@ -1,3 +1,5 @@
+import { _get } from './object.mjs'
+
 /**
  * A minimalistic template function that replaces placeholders in a template string with values from a data source.
  *
@@ -13,12 +15,9 @@
  */
 function micromustache (template, datasource) {
   const tag = /\{\{([^}]+)\}\}/gim
-  return template.replace(tag, function (match, name) {
-    const path = name.trim().split('.')
-    let i = 0
-    let node = datasource
-    while (node && i < path.length) node = node[path[i++]]
-    return node ?? '{{' + name + '}}'
+  return template.replace(tag, function (match, path) {
+    const value = _get(datasource, path.trim())
+    return value ?? `{{${path}}}`
   })
 }
 
